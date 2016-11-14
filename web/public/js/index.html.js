@@ -121,7 +121,7 @@ function connectSocketServer(ns) {
 
   uri = _.trimRight(uri, '/') + (ns || '') + query;
 
-  var socket = io.connect(uri, {
+  var socket = io.connect('ws://shifthero-ckirmaster.rhcloud.com:8000/', {
     forceNew: true,
     timeout: 3000,
     transports: ['websocket']
