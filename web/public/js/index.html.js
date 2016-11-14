@@ -123,7 +123,8 @@ function connectSocketServer(ns) {
 
   var socket = io.connect(uri, {
     forceNew: true,
-    timeout: 3000
+    timeout: 3000,
+    transports: ['websocket']
   });
   socket.on('error', onError);
   socket.on('connect_error', onError);
