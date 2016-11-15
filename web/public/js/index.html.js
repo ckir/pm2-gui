@@ -123,7 +123,7 @@ function connectSocketServer(ns) {
   
   if (uri.indexOf('rhcloud') > 0) {
     var parser = document.createElement('a');
-    parser.href = uri;
+    parser.href = location.protocol + '//' + uri;
     if (parser.protocol == 'http:') {
       parser.protocol = 'ws:';
       parser.port = 8000;
