@@ -120,8 +120,21 @@ function connectSocketServer(ns) {
   }
 
   uri = _.trimRight(uri, '/') + (ns || '') + query;
+  
+  if (uri.indexOf('rhcloud') > 0) {
+    var parser = document.createElement('a');
+    parser.href = uri;
+    if (parser.protocol == 'http:') {
+      parser.protocol = 'ws:';
+      parser.port = 8000;
+    } else {
+      parser.protocol = 'wss:';
+      parser.port = 8443;
+    }
+    uri = parser.href;
+  }
 
-  var socket = io.connect('ws://shifthero-ckirmaster.rhcloud.com:8000/', {
+  var socket = io.connect(uri, {
     forceNew: true,
     timeout: 3000,
     transports: ['websocket']
